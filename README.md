@@ -24,4 +24,14 @@ Eagle parts lib : pPSI.zip
 
 1: Stepdown transformer 120V - 24V
 
-1: 
+# voltage ratings for components:
+
+ESP32 - reccomends 6 - 12V through VIN 
+
+shift registers - nominal : 5V , 6V MAX
+
+7 seg LED - nominal :3.6V , 4.6V MAX
+
+relay modules - 5V 
+
+adc sensor - 3.3V 
