@@ -17,55 +17,64 @@ const byte digit_pattern[10] =
   
 };
 
-int latchPin = 4;                                  //Pin connected to ST_CP of 74HC595
-int clkPin = 12;                                   //Pin connected to SH_CP of 74HC595
-int dtPin = 14;                                    //Pin connected to DS of 74HC595
+int latchPin = 13;                                  //Pin connected to ST_CP of 74HC595 pin 12
+int clkPin = 12;                                   //Pin connected to SH_CP of 74HC595 pin 11
+int dtPin = 11;                                    //Pin connected to DS of 74HC595 pin 14
 
+int startButton = 6;                               //start
+int downButton = 7;                                //subtract
+int upButton = 8;                                  //add 
+int stopButton = 2;                                //stop
 
-int startButton = 5;                               //start
-int upButton = 19;                                  //add 
-int downButton = 18;                                //subtract
-int stopButton = 21;                                //stop
+int tensPSI = 3;                                             //variables to update display
+int onesPSI = 5;
+int targetPSI = 35;                                          //variable to store what the PSI is being set to
 
-int tensPSI=3;                                             //variables to update display
-int onesPSI=5;
-int targetPSI=35;                                          //variable to store what the PSI is being set to
+int *tPSI;
+int *oPSI;
+int *tarPSI;
 
+volatile bool pressed = false;
 
+//int sensor = 2;                                    //sensor 
+int valve_in = 9;
+int valve_out = 10;
 
-bool pressed = false;
-
-int valve_in = 34;
-int valve_out = 35;
-int sensor = A0;                                    //sensor 
 int sensorValue;                                           //variable to store raw sensor data
 
 void setup() {
-  Serial.begin(115200);                                                 //initialize serial communication at 9600 bits per second:      
+  Serial.begin(9600);                                                 //initialize serial communication at 9600 bits per second:      
   
   pinMode(valve_in,OUTPUT);  
   pinMode(valve_out,OUTPUT);  
   
-  digitalWrite(valve_in,HIGH);
-  digitalWrite(valve_out,HIGH);
+  digitalWrite(valve_in,LOW);
+  digitalWrite(valve_out,LOW);
      
   pinMode(latchPin, OUTPUT);    //ST_CP of 74HC595
   pinMode(clkPin, OUTPUT);      //SH_CP of 74HC595
   pinMode(dtPin, OUTPUT);       //DS of 74HC595
 
-  pinMode(upButton, INPUT);
-  pinMode(downButton, INPUT);
-  pinMode(startButton, INPUT);
-  pinMode(stopButton, INPUT);
+  pinMode(upButton, INPUT_PULLUP);
+  pinMode(downButton, INPUT_PULLUP);
+  pinMode(startButton, INPUT_PULLUP);
+  pinMode(stopButton, INPUT_PULLUP);
 
   digitalWrite(latchPin, LOW);
   shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[5]);   
   shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[3]);
   digitalWrite(latchPin, HIGH);  
+  attachInterrupt(digitalPinToInterrupt(stopButton),Stop,FALLING);
+
+
+  tPSI = &tensPSI;
+  oPSI = &onesPSI;
+  tarPSI = &targetPSI;  
 }
 
+void(* resetFunc) (void) = 0;//declare reset function at address 0
 int readSensor(){                                                // function that returns PSI 
-    int psi;
+    int psi = 30;
  //   sensorValue = analogRead(sensor);                            // read the input on analog pin 0:
 //    float voltage = sensorValue * (aref_voltage / 1023.0);       // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   //  int rounding = (voltage * 100) + .5;                         // to round from x.xxxxxx precision to .1, store in INT variable: (x.xxxx * 100) + .05),  
@@ -110,68 +119,68 @@ void startDeflation(){
       delay(100);
      } 
 }
+//
 
-
+void Stop(){
+  digitalWrite(valve_in,LOW);                       //closes from tank,  
+  digitalWrite(valve_out,LOW);                     //and closes exhaust
+  
+  digitalWrite(latchPin, LOW);
+  shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[*oPSI]);   
+  shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[*tPSI]);
+  digitalWrite(latchPin, HIGH);
+ }
 
 void loop() {
   bool upState = digitalRead(upButton);                               //check status of buttons
   bool downState = digitalRead(downButton);
   bool startState = digitalRead(startButton);
-  bool stopState = digitalRead(stopButton);
-
-  if      (upState == pressed){                                    //add to target pressure
-  
+//
+  if(upState == pressed){                                    //add to target pressure
     if (onesPSI != 9 or tensPSI !=9){                       //highest possible diplay 99 -> if 99, do nothing
-      targetPSI += 1;                                       //update target PSI
-      tensPSI = targetPSI / 10 ;                            //extract tens value to push onto shift register
-      onesPSI = targetPSI - (tensPSI * 10) ;                //extract ones value to push onto shift register
-    
+      *tarPSI += 1;                                       //update target PSI
+      *tPSI = *tarPSI / 10 ;                            //extract tens value to push onto shift register
+      *oPSI = *tarPSI - (*tPSI * 10) ;                //extract ones value to push onto shift register
+//    
       digitalWrite(latchPin,LOW);                      //low pin allows writing to shift register
-      shiftOut(dtPin,clkPin,LSBFIRST,digit_pattern[onesPSI]); //push ones 
-      shiftOut(dtPin,clkPin,LSBFIRST,digit_pattern[tensPSI]); //push tens
+      shiftOut(dtPin,clkPin,LSBFIRST,digit_pattern[*oPSI]); //push ones 
+      shiftOut(dtPin,clkPin,LSBFIRST,digit_pattern[*tPSI]); //push tens
       digitalWrite(latchPin,HIGH);                     //high pin closes writing to shift register
       delay(180);                                           //180ms delay
     }
   }
-  else if (downState == pressed){                            //subtract from target pressure
-      
+  else if (downState == pressed){                            //subtract from target pressure     
     if (onesPSI != 0 or tensPSI !=0){                       //lowest possible display 00 -> if 00, do nothing
-      targetPSI -= 1;                                       //update target PSI
-      tensPSI = targetPSI / 10 ;                            //extract tens value to push onto shift register
-      onesPSI = targetPSI - (tensPSI * 10) ;                //extract ones value to push onto shift register
+      *tarPSI -= 1;                                       //update target PSI
+      *tPSI = *tarPSI / 10 ;                            //extract tens value to push onto shift register
+      *oPSI = *tarPSI - (*tPSI * 10) ;                //extract ones value to push onto shift register
       
       digitalWrite(latchPin,LOW);                      //active low pin allows writing to shift register
-      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[onesPSI]); //push ones 
-      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[tensPSI]); //push tens
+      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*oPSI]); //push ones 
+      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*tPSI]); //push tens
       digitalWrite(latchPin,HIGH);                     //active high pin closes writing to shift register
       delay(180);                                           //180ms delay 
     }
   }
   else if (startState == pressed){
     int pressure = readSensor();                            //READ SENSOR
-    
-    if (pressure < targetPSI){                             //IF SENSOR DATA BELOW TARGET -> START INFLATION
-      
-      while (stopState != pressed){                         // check stop state at multiple stages to ensure immediate stopping 
-        stopState = digitalRead(stopButton);              
-        digitalWrite(valve_in,LOW);                       //sequence opens from tank,  
-        digitalWrite(valve_out,HIGH);                     //and closes exhaust
-        stopState= digitalRead(stopButton);
-        delay(3000);
-        if (stopState == pressed){
-          digitalWrite(valve_in,HIGH);                  // sequence closes tank 
-          digitalWrite(valve_out,HIGH);                 // and exhaust
-          break;                                        //back to main function                              
-      }
-      delay(100);
-     }  
-    }
-    if (pressure > targetPSI){                             //IF SENSOR DATA ABOVE TARGET -> START DEFLATION
-     // newPressure = startDeflation(targetPSI);
-    }
-  }
+    do {                             //IF SENSOR DATA BELOW TARGET -> START INFLATION      
+      digitalWrite(valve_in,HIGH);                       //sequence opens from tank,  
+      digitalWrite(valve_out,LOW);                     //and closes exhaust
+      delay(2000);
+      digitalWrite(valve_in,LOW);                       //closes from tank,  
+      digitalWrite(valve_out,LOW);                     //and closes exhaust
+  
+      pressure = 60;
+    } while (pressure < *tarPSI);
+      *tPSI = (pressure / 10);                            //extract tens value to push onto shift register
+      *oPSI = pressure - (*tPSI * 10);                //extract ones value to push onto shift register
+      digitalWrite(latchPin,LOW);                      //active low pin allows writing to shift register
+      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*oPSI]); //push ones 
+      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*tPSI]); //push tens
+      digitalWrite(latchPin,HIGH);                     //active high pin closes writing to shift register
+      delay(180);
+  }         
 }
-int main(){
-  void();
-  return 0;
-}
+
+  
