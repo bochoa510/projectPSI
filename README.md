@@ -8,7 +8,8 @@ schematic & layout files : pPSI.zip
 1: Stepdown transformer 120V -> 24V 
 
 2: AC->DC converter, 5V (http://en.sanmim.com/product/6.html)
- ![image](https://user-images.githubusercontent.com/65479298/192938053-ce143546-a3d1-410d-ae2a-fe97e1dd2196.png)
+ ![image](https://user-images.githubusercontent.com/65479298/192938053-ce143546-a3d1-410d-ae2a-fe97e1dd2196.png) 
+ 
     - C1: 47μF/25V electrolytic capacitor
     - C2: .1μF/50V ceramic capacitor
     - D1: TVS 7A diode 
