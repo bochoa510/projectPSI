@@ -1,8 +1,8 @@
-# projectPSI ; automatic tire inflator
+# projectPSI ; Automatic Tire Inflator
 
-code  : mainControl.ino 
+arduino code  : mainControl.ino 
 
-schematic : pPSI.zip
+schematic & layout files : pPSI.zip
 
 # materials
 
