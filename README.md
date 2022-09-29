@@ -7,10 +7,14 @@ schematic & layout files : pPSI.zip
 # Materials
 1: Stepdown transformer 120V -> 24V 
 
-2: AC->DC converter, 5V
-    - 2: .1μF ceramic capacitor
-    - 2: 47μF electrolytic capacitor
-    - 2: TVS diode 
+2: AC->DC converter, 5V (http://en.sanmim.com/product/6.html)
+    - C1: 47μF/25V electrolytic capacitor
+    - C2: .1μF/50V ceramic capacitor
+    - D1: TVS 7A diode 
+    ![image](https://user-images.githubusercontent.com/65479298/192938053-ce143546-a3d1-410d-ae2a-fe97e1dd2196.png)
+
+    
+    
 
 2: 24V AC solenoids (1/2) inch 
 
