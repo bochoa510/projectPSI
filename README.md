@@ -32,7 +32,7 @@ schematic & layout files : pPSI.zip
 
 2: 74HC595N Shift Register (https://www.digikey.com/en/products/detail/texas-instruments/SN74HC595N/277246)
 
-    - 2: 1μF ceramic capacitor
+    - 2: .1μF ceramic capacitor
 
 2: 1" 7 Segment LED Display (https://www.mouser.com/ProductDetail/604-SC10-21SRWA)
 
