@@ -10,6 +10,7 @@ schematic & layout files : pPSI.zip
 2: 24V AC N/C Solenoid Valve 1/2" (https://www.electricsolenoidvalves.com/1-2-24v-ac-electric-brass-solenoid-valve/)
 
 2: AC->DC converter, 5V (https://www.amazon.com/gp/product/B07V5XP92F/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
+
  ![image](https://user-images.githubusercontent.com/65479298/192938053-ce143546-a3d1-410d-ae2a-fe97e1dd2196.png) 
  
     - C1: 47μF/25V electrolytic capacitor
