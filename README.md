@@ -14,7 +14,7 @@ schematic & layout files : pPSI.zip
  ![image](https://user-images.githubusercontent.com/65479298/192938053-ce143546-a3d1-410d-ae2a-fe97e1dd2196.png) 
  
     - C1: 47μF/25V electrolytic capacitor
-    - C2: 1μF/50V ceramic capacitor
+    - C2: 1μF/50V ceramic capacitor (105)
     - D1: TVS 7A diode 
 
 2: 5V relay modules (https://www.amazon.com/dp/B00LW15A4W?ref=nb_sb_ss_w_as-reorder-t1_ypp_rep_k0_1_6&amp=&crid=W0WI06CL6J4E&amp=&sprefix=5v+rel) 
@@ -32,7 +32,7 @@ schematic & layout files : pPSI.zip
 
 2: 74HC595N Shift Register (https://www.digikey.com/en/products/detail/texas-instruments/SN74HC595N/277246)
 
-    - 2: .1μF ceramic capacitor
+    - 2: .1μF ceramic capacitor (104)
 
 2: 1" 7 Segment LED Display (https://www.mouser.com/ProductDetail/604-SC10-21SRWA)
 
