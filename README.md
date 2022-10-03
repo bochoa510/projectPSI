@@ -21,7 +21,7 @@ schematic & layout files : pPSI.zip
 
 1: Atmega328pu (https://www.digikey.com/en/products/detail/microchip-technology/ATMEGA328P-PU/1914589)
 
-    - 2: 22pF ceramic capacitor
+    - 2: 22pF ceramic capacitor (220)
     - 1: 16MHz crystal oscillator
 
 1: 150 PSI Pressure Transducer (https://www.amazon.com/dp/B08G4YRZT8/ref=twister_B08G4XH5PK?_encoding=UTF8&psc=1)
