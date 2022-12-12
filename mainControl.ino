@@ -1,4 +1,7 @@
 
+#include "ADS1X15.h"
+ADS1115 ADS(0x48);
+
 const byte digit_pattern[10] =
 {
   // 74HC595 Outpin Connection with 7segment display.
@@ -16,14 +19,29 @@ const byte digit_pattern[10] =
   0b11110110,  // 9
   
 };
+/*
+ * RESET 
+ * SCL A5 | 28
+ * SDA A4 | 27
+ * SER A2
+ * LATCH A3
+ * CLK A1 | 23
+ * INLET 0 | 2
+ * STOP 2 | 4
+ * OUTLET 1
+ * UP 6
+ * DOWN 7
+ * START 8
+ * ADC 9
+ */
 
-int latchPin = 13;                                  //Pin connected to ST_CP of 74HC595 pin 12
-int clkPin = 12;                                   //Pin connected to SH_CP of 74HC595 pin 11
-int dtPin = 11;                                    //Pin connected to DS of 74HC595 pin 14
+int latchPin = A3;                                  //Pin connected to ST_CP of 74HC595 pin 12
+int clkPin = A1;                                   //Pin connected to SH_CP of 74HC595 pin 11
+int dtPin = A2;                                    //Pin connected to DS of 74HC595 pin 14
 
-int startButton = 6;                               //start
+int startButton = 8;                               //start
 int downButton = 7;                                //subtract
-int upButton = 8;                                  //add 
+int upButton = 6;                                  //add 
 int stopButton = 2;                                //stop
 
 int tensPSI = 3;                                             //variables to update display
@@ -36,29 +54,30 @@ int *tarPSI;
 
 volatile bool pressed = false;
 
-//int sensor = 2;                                    //sensor 
-int valve_in = 9;
-int valve_out = 10;
+int sensor = 9;                                    //sensor 
+int valve_in = 0;
+int valve_out = 1;
 
 int sensorValue;                                           //variable to store raw sensor data
 
 void setup() {
-  Serial.begin(9600);                                                 //initialize serial communication at 9600 bits per second:      
-  
   pinMode(valve_in,OUTPUT);  
-  pinMode(valve_out,OUTPUT);  
+  pinMode(valve_out,OUTPUT);
+  pinMode(sensor, OUTPUT);        
   
   digitalWrite(valve_in,LOW);
   digitalWrite(valve_out,LOW);
-     
+  digitalWrite(sensor,LOW);
+  
+   
   pinMode(latchPin, OUTPUT);    //ST_CP of 74HC595
   pinMode(clkPin, OUTPUT);      //SH_CP of 74HC595
   pinMode(dtPin, OUTPUT);       //DS of 74HC595
-
-  pinMode(upButton, INPUT_PULLUP);
-  pinMode(downButton, INPUT_PULLUP);
-  pinMode(startButton, INPUT_PULLUP);
-  pinMode(stopButton, INPUT_PULLUP);
+    
+  pinMode(upButton,INPUT);
+  pinMode(downButton,INPUT);
+  pinMode(startButton,INPUT);
+  pinMode(stopButton,INPUT);
 
   digitalWrite(latchPin, LOW);
   shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[5]);   
@@ -74,7 +93,17 @@ void setup() {
 
 void(* resetFunc) (void) = 0;//declare reset function at address 0
 int readSensor(){                                                // function that returns PSI 
-    int psi = 30;
+    digitalWrite(sensor,HIGH);
+    delay(5000);
+    Serial.begin(115200);                                                 //initialize serial communication at 9600 bits per second:      
+    ADS.begin();
+    ADS.setGain(1);      // 4.096 volt
+    ADS.setDataRate(7);  // fast
+    ADS.setMode(0);      // continuous mode
+    ADS.readADC(0);      // read a0 
+    int psi = ADS.getValue();
+    //do stuff
+    digitalWrite(sensor,LOW);
  //   sensorValue = analogRead(sensor);                            // read the input on analog pin 0:
 //    float voltage = sensorValue * (aref_voltage / 1023.0);       // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   //  int rounding = (voltage * 100) + .5;                         // to round from x.xxxxxx precision to .1, store in INT variable: (x.xxxx * 100) + .05),  
@@ -90,6 +119,7 @@ int readSensor(){                                                // function tha
 }
 
 void startInflation(){
+ 
   bool stopState = digitalRead(stopButton);
   while (stopState != pressed){                         // check stop state at multiple stages to ensure immediate stopping 
       stopState = digitalRead(stopButton);              
@@ -103,6 +133,8 @@ void startInflation(){
       }
       delay(100);
      }
+
+     
 }
 
 void startDeflation(){
@@ -163,7 +195,7 @@ void loop() {
     }
   }
   else if (startState == pressed){
-    int pressure = readSensor();                            //READ SENSOR
+    int pressure = 40; //readSensor();                            //READ SENSOR
     do {                             //IF SENSOR DATA BELOW TARGET -> START INFLATION      
       digitalWrite(valve_in,HIGH);                       //sequence opens from tank,  
       digitalWrite(valve_out,LOW);                     //and closes exhaust
