@@ -1,5 +1,6 @@
 
 #include "ADS1X15.h"
+
 ADS1115 ADS(0x48);
 
 const byte digit_pattern[10] =
@@ -48,10 +49,6 @@ int tensPSI = 3;                                             //variables to upda
 int onesPSI = 5;
 int targetPSI = 35;                                          //variable to store what the PSI is being set to
 
-int *tPSI;
-int *oPSI;
-int *tarPSI;
-
 volatile bool pressed = false;
 
 int sensor = 9;                                    //sensor 
@@ -85,23 +82,26 @@ void setup() {
   digitalWrite(latchPin, HIGH);  
   attachInterrupt(digitalPinToInterrupt(stopButton),Stop,FALLING);
 
-
-  tPSI = &tensPSI;
-  oPSI = &onesPSI;
-  tarPSI = &targetPSI;  
 }
 
-void(* resetFunc) (void) = 0;//declare reset function at address 0
 int readSensor(){                                                // function that returns PSI 
     digitalWrite(sensor,HIGH);
-    delay(5000);
-    Serial.begin(115200);                                                 //initialize serial communication at 9600 bits per second:      
+    delay(2000);
+    Serial.begin(115200);                                                 //initialize serial communication at 115200 bits per second:      
+    delay(2000);
+    
     ADS.begin();
-    ADS.setGain(1);      // 4.096 volt
-    ADS.setDataRate(7);  // fast
-    ADS.setMode(0);      // continuous mode
-    ADS.readADC(0);      // read a0 
-    int psi = ADS.getValue();
+    ADS.setGain(1);      // max 4.096V , [(4.096 * 37.5) - 18.75] = 135 -> CANNOT EXCEED 130 PSI 
+    ADS.setDataRate(5);  // fastest for 1115
+    
+    int16_t val_0 = ADS.readADC(0); 
+    float V = ADS.toVoltage(1);  // voltage factor
+    float Voltage = (val_0 * V);
+    int psi = (Voltage * 37.5) - 18.75;
+    float fpsi = (Voltage * 37.5) - 18.75;
+    
+    return psi
+    
     //do stuff
     digitalWrite(sensor,LOW);
  //   sensorValue = analogRead(sensor);                            // read the input on analog pin 0:
@@ -156,8 +156,8 @@ void Stop(){
   digitalWrite(valve_out,LOW);                     //and closes exhaust
   
   digitalWrite(latchPin, LOW);
-  shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[*oPSI]);   
-  shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[*tPSI]);
+  shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[onesPSI]);   
+  shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[tensPSI]);
   digitalWrite(latchPin, HIGH);
  }
 
@@ -168,32 +168,32 @@ void loop() {
 //
   if(upState == pressed){                                    //add to target pressure
     if (onesPSI != 9 or tensPSI !=9){                       //highest possible diplay 99 -> if 99, do nothing
-      *tarPSI += 1;                                       //update target PSI
-      *tPSI = *tarPSI / 10 ;                            //extract tens value to push onto shift register
-      *oPSI = *tarPSI - (*tPSI * 10) ;                //extract ones value to push onto shift register
+      targetPSI += 1;                                       //update target PSI
+      tensPSI = targetPSI / 10 ;                            //extract tens value to push onto shift register
+      onesPSI = targetPSI - (tensPSI * 10) ;                //extract ones value to push onto shift register
 //    
       digitalWrite(latchPin,LOW);                      //low pin allows writing to shift register
-      shiftOut(dtPin,clkPin,LSBFIRST,digit_pattern[*oPSI]); //push ones 
-      shiftOut(dtPin,clkPin,LSBFIRST,digit_pattern[*tPSI]); //push tens
+      shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[onesPSI]);   
+      shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[tensPSI]);
       digitalWrite(latchPin,HIGH);                     //high pin closes writing to shift register
       delay(180);                                           //180ms delay
     }
   }
   else if (downState == pressed){                            //subtract from target pressure     
     if (onesPSI != 0 or tensPSI !=0){                       //lowest possible display 00 -> if 00, do nothing
-      *tarPSI -= 1;                                       //update target PSI
-      *tPSI = *tarPSI / 10 ;                            //extract tens value to push onto shift register
-      *oPSI = *tarPSI - (*tPSI * 10) ;                //extract ones value to push onto shift register
+      targetPSI -= 1;                                       //update target PSI
+      tensPSI = targetPSI / 10 ;                            //extract tens value to push onto shift register
+      onesPSI = targetPSI - (tensPSI * 10) ;                //extract ones value to push onto shift register
       
       digitalWrite(latchPin,LOW);                      //active low pin allows writing to shift register
-      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*oPSI]); //push ones 
-      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*tPSI]); //push tens
+      shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[onesPSI]);   
+      shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[tensPSI]);
       digitalWrite(latchPin,HIGH);                     //active high pin closes writing to shift register
       delay(180);                                           //180ms delay 
     }
   }
   else if (startState == pressed){
-    int pressure = 40; //readSensor();                            //READ SENSOR
+    int pressure = readSensor();                            //READ SENSOR
     do {                             //IF SENSOR DATA BELOW TARGET -> START INFLATION      
       digitalWrite(valve_in,HIGH);                       //sequence opens from tank,  
       digitalWrite(valve_out,LOW);                     //and closes exhaust
@@ -202,12 +202,12 @@ void loop() {
       digitalWrite(valve_out,LOW);                     //and closes exhaust
   
       pressure = 60;
-    } while (pressure < *tarPSI);
-      *tPSI = (pressure / 10);                            //extract tens value to push onto shift register
-      *oPSI = pressure - (*tPSI * 10);                //extract ones value to push onto shift register
+    } while (pressure < targetPSI);
+      tensPSI = (pressure / 10);                            //extract tens value to push onto shift register
+      onesPSI = pressure - (tensPSI * 10);                //extract ones value to push onto shift register
       digitalWrite(latchPin,LOW);                      //active low pin allows writing to shift register
-      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*oPSI]); //push ones 
-      shiftOut(dtPin, clkPin,LSBFIRST,digit_pattern[*tPSI]); //push tens
+      shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[onesPSI]);   
+      shiftOut(dtPin, clkPin, LSBFIRST, digit_pattern[tensPSI]);
       digitalWrite(latchPin,HIGH);                     //active high pin closes writing to shift register
       delay(180);
   }         
