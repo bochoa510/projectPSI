@@ -93,17 +93,24 @@ int readSensor(){                                                // function tha
     ADS.begin();
     ADS.setGain(1);      // max 4.096V , [(4.096 * 37.5) - 18.75] = 135 -> CANNOT EXCEED 130 PSI 
     ADS.setDataRate(5);  // fastest for 1115
+
+    //should take average of reading 
+
+    for(int i=1; i == 10; i++){ 
+      int16_t val += ADS.readADC(0); 
+      float V = ADS.toVoltage(1);  // voltage factor
+      float Voltage = (val * V);
+      int psi = (Voltage * 37.5) - 18.75;
+      float fpsi = (Voltage * 37.5) - 18.75;
+    }
+    float avgVal = val / 10
+    float avgV = V / 10 
+     
+
+    //do stuff 
     
-    int16_t val_0 = ADS.readADC(0); 
-    float V = ADS.toVoltage(1);  // voltage factor
-    float Voltage = (val_0 * V);
-    int psi = (Voltage * 37.5) - 18.75;
-    float fpsi = (Voltage * 37.5) - 18.75;
-    
+    digitalWrite(sensor,LOW); //turn off sensor 
     return psi
-    
-    //do stuff
-    digitalWrite(sensor,LOW);
  //   sensorValue = analogRead(sensor);                            // read the input on analog pin 0:
 //    float voltage = sensorValue * (aref_voltage / 1023.0);       // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   //  int rounding = (voltage * 100) + .5;                         // to round from x.xxxxxx precision to .1, store in INT variable: (x.xxxx * 100) + .05),  
@@ -113,9 +120,7 @@ int readSensor(){                                                // function tha
  //   float pa =   ( (v - 0.50) / (3.3335) )  * 1000000 ;
  //   float converting = pa * (.000145161);
  //   psi = converting + .5 ;
-
-     
-    return psi;
+      
 }
 
 void startInflation(){
