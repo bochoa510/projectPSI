@@ -1,23 +1,23 @@
-# projectPSI : Automatic Tire Inflator prototype, Rev3 
+# projectPSI : Automatic Tire Inflator prototype 
 
 # Index
 
-* # CAD
+* CAD
   - housing design using OnShapeCAD
     
-* # Code
+*  Code
    - source code used to program microcontroller
  
-* # Parts
+* Parts
     - detailed list of components used and links 
     
-* # Previous versions
+* Previous versions
   - previous versions, keeping for project history
     
-* # Resources
+* Resources
    - parts resources  
      
-* # Schematics
+* Schematics
    - KiCAD schematic files and board design
 
 
