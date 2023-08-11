@@ -1,15 +1,11 @@
-# to do:
+# for Rev3 fix layout design problems:
 
-update maincontrol to correctly measure and display PSI
-
-# fix layout design problems:
-
-   I2C pins
+   I2C pins, pull up resistors
    
-  pull down resistors for transistors
+   pull down resistors for transistors
   
 
-# goal is to have self contained pcb:
+# for Rev3 goal is to have self contained pcb:
 
   5v relay moodule w/ isolation
   
