@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "pPSI")(type "KiCad")(uri "/home/bryan/Documents/projectPSI/Schematics/KiCAD Parts Library/parts.kicad_sym")(options "")(descr ""))
+)
