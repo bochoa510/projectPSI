@@ -1,13 +1,6 @@
-82062701953927
+65032344197361
 pPSI
 .1uF Cap (c)
-
-
-0
-2
-2
-pPSI
-.1uF ceramic capacitor
 
 
 0
@@ -22,13 +15,6 @@ pPSI
 1
 pPSI
 1kohm
-
-
-0
-2
-2
-pPSI
-1kohm resistor
 
 
 0
@@ -50,13 +36,6 @@ pPSI
 2
 pPSI
 2.2kohm
-
-
-0
-2
-2
-pPSI
-2.2kohm resisitor
 
 
 0
@@ -98,13 +77,6 @@ pPSI
 2
 2
 pPSI
-4.7kohm resistor
-
-
-0
-2
-2
-pPSI
 5 pin header
 
 1935174 
@@ -118,6 +90,13 @@ pPSI
 0
 5
 5
+pPSI
+6.8ohm
+
+ROX3SJ6R8 
+0
+2
+2
 pPSI
 7 pin header
 
@@ -161,21 +140,7 @@ pPSI
 2
 2
 pPSI
-10kohm resistor
-
-
-0
-2
-2
-pPSI
 10uF Cap (c)
-
-C0805C106K9PACTU 
-0
-2
-2
-pPSI
-10uF Ceramic Capacitor
 
 C0805C106K9PACTU 
 0
@@ -196,21 +161,7 @@ C0805C220J5GAC7210
 2
 2
 pPSI
-22pFCeramicCap
-
-C0805C220J5GAC7210 
-0
-2
-2
-pPSI
 100ohm
-
-
-0
-2
-2
-pPSI
-100ohm resistor
 
 
 0
@@ -224,14 +175,7 @@ pPSI
 2
 2
 pPSI
-220uF electrolytic capacitor
-
-
-0
-2
-2
-pPSI
-470V Varistor
+350V_4.5kA MOV
 
 
 0
@@ -252,12 +196,12 @@ ATMEGA328P-PU
 28
 28
 pPSI
-FUSE
+CONV_PSK-10D-5
 
 
 0
-2
-2
+4
+4
 pPSI
 Fuse
 
@@ -273,13 +217,6 @@ NPN Transistor
 3
 3
 pPSI
-Opto-isolator
-
-
-0
-4
-4
-pPSI
 Oscillator
 
 HCM4916000000ABJT 
@@ -293,13 +230,6 @@ PNP Transistor
 0
 3
 3
-pPSI
-ac-dc converter
-
-
-0
-4
-4
 pPSI
 ferrite bead
 

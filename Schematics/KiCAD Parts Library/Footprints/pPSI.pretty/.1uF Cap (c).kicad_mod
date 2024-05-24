@@ -25,7 +25,7 @@
 			)
 		)
 	)
-	(property "Footprint" ""
+	(property "Footprint" ".1uF Cap (c)"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
