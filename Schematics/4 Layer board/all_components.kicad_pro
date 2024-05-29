@@ -500,7 +500,7 @@
       "plot": "../Gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../CAD/all_components.step",
       "svg": "",
       "vrml": ""
     },

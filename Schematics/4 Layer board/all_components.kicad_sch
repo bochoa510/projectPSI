@@ -7523,16 +7523,6 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 248.92) (xy 190.5 248.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1bc4ec30-cf56-424b-90fc-a6208d513da5")
-	)
-	(wire
-		(pts
 			(xy 269.24 172.72) (xy 269.24 179.07)
 		)
 		(stroke
@@ -8448,6 +8438,17 @@
 		)
 		(uuid "17342408-9251-46e7-99b1-2e2a4e0ef52a")
 	)
+	(label "Neutral"
+		(at 215.9 242.57 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "17aece5f-6e2b-4099-81aa-83ef5dd59abb")
+	)
 	(label "VCC"
 		(at 247.65 200.66 90)
 		(fields_autoplaced yes)
@@ -8634,17 +8635,6 @@
 			(justify right bottom)
 		)
 		(uuid "316240a6-05d8-4d42-8306-fefab7653855")
-	)
-	(label "N{slash}O_OUTLET"
-		(at 231.14 246.38 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right bottom)
-		)
-		(uuid "31767437-36e0-42cd-97ba-e5089fd31049")
 	)
 	(label "T9"
 		(at 55.88 116.84 90)
@@ -9053,6 +9043,17 @@
 		)
 		(uuid "66db5820-a7e7-4346-a5b3-85dfeae2da70")
 	)
+	(label "Neutral"
+		(at 252.73 242.57 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "67938aab-9222-44e2-97cb-f59088532db4")
+	)
 	(label "VCC"
 		(at 271.78 110.49 0)
 		(fields_autoplaced yes)
@@ -9129,17 +9130,6 @@
 			(justify left bottom)
 		)
 		(uuid "7eb01f51-4d3b-4277-abd7-324030667b1f")
-	)
-	(label "N{slash}O_INLET"
-		(at 236.22 246.38 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "7f0b1efc-e4c7-46ac-a89d-060409eba0d0")
 	)
 	(label "VCC"
 		(at 163.83 71.12 90)
@@ -9415,17 +9405,6 @@
 			(justify right bottom)
 		)
 		(uuid "a3309fe9-24fa-4005-a159-4b44e8553c1a")
-	)
-	(label "LIVE"
-		(at 233.68 246.38 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "a8d86023-488e-4406-a6e9-020de7900eb2")
 	)
 	(label "VCC"
 		(at 85.09 142.24 90)
@@ -9823,17 +9802,6 @@
 		)
 		(uuid "eab2c0df-61c0-41ff-a1d6-3d9b3ba244e1")
 	)
-	(label "Neutral"
-		(at 193.04 248.92 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "eafbd3a5-a2b0-4852-837c-fd0c8db9df1a")
-	)
 	(label "O2"
 		(at 90.17 182.88 270)
 		(fields_autoplaced yes)
@@ -10070,7 +10038,7 @@
 				)
 			)
 		)
-		(property "Value" "C0805C220J5GAC7210"
+		(property "Value" ""
 			(at 143.51 135.89 0)
 			(effects
 				(font
@@ -10787,6 +10755,74 @@
 			(project "digit display"
 				(path "/72f39ff8-1821-41d9-b4cf-5bcb9feedd74"
 					(reference "ONES?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x01")
+		(at 215.9 232.41 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "216b5e41-0b97-4cab-ad93-63a5435c896f")
+		(property "Reference" "S5"
+			(at 218.44 233.68 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x01"
+			(at 214.6879 230.378 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "pPSI:1 pin header"
+			(at 215.9 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 215.9 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 215.9 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c2aaf229-0b64-42b5-ad85-f600617ccbe1")
+		)
+		(instances
+			(project "all_components"
+				(path "/45cdd23a-892f-4ce7-abfc-c1f6dcc5689e"
+					(reference "S5")
 					(unit 1)
 				)
 			)
@@ -15110,7 +15146,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "pPSI:220uF Cap (e)"
+		(property "Footprint" "pPSI:220uF (e)"
 			(at 62.8168 256.8514 90)
 			(effects
 				(font
@@ -15245,6 +15281,74 @@
 			(project "all_components"
 				(path "/45cdd23a-892f-4ce7-abfc-c1f6dcc5689e"
 					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x01")
+		(at 252.73 237.49 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e852098b-f1df-4db8-abc0-903dfb4c9b9c")
+		(property "Reference" "S7"
+			(at 254 234.95 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x01"
+			(at 250.698 238.7021 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "pPSI:1 pin header"
+			(at 252.73 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 252.73 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 252.73 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "39552c82-2ad7-4856-914e-73d10ce41098")
+		)
+		(instances
+			(project "all_components"
+				(path "/45cdd23a-892f-4ce7-abfc-c1f6dcc5689e"
+					(reference "S7")
 					(unit 1)
 				)
 			)
@@ -15551,6 +15655,74 @@
 			(project "rev3"
 				(path "/87f0b9b3-8e27-4b23-bcb5-60960c672ecd"
 					(reference "LED?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x01")
+		(at 215.9 237.49 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f59da7e8-336f-469d-8360-1539d6631e41")
+		(property "Reference" "S6"
+			(at 217.17 234.95 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x01"
+			(at 213.868 238.7021 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "pPSI:1 pin header"
+			(at 215.9 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 215.9 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 215.9 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4ce78b29-a86f-4490-9495-7a0ccc6cfd1a")
+		)
+		(instances
+			(project "all_components"
+				(path "/45cdd23a-892f-4ce7-abfc-c1f6dcc5689e"
+					(reference "S6")
 					(unit 1)
 				)
 			)
@@ -16050,6 +16222,74 @@
 			(project "all_components"
 				(path "/45cdd23a-892f-4ce7-abfc-c1f6dcc5689e"
 					(reference "B1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x01")
+		(at 252.73 232.41 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ff843223-ca7f-4b48-948e-814ddd7b36e0")
+		(property "Reference" "S4"
+			(at 250.19 231.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x01"
+			(at 253.9421 234.442 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "pPSI:1 pin header"
+			(at 252.73 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 252.73 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 252.73 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "45d13ea8-0c11-462d-874c-88eccc3329ae")
+		)
+		(instances
+			(project "all_components"
+				(path "/45cdd23a-892f-4ce7-abfc-c1f6dcc5689e"
+					(reference "S4")
 					(unit 1)
 				)
 			)

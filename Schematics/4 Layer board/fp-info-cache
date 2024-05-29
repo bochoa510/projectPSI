@@ -1,4 +1,4 @@
-65032344197361
+68664057727988
 pPSI
 .1uF Cap (c)
 
@@ -28,6 +28,13 @@ pPSI
 2
 2
 pPSI
+1x5 female header
+D01-9970542
+Connector
+0
+5
+5
+pPSI
 2 pin header
 
 1716020000 
@@ -41,6 +48,13 @@ pPSI
 0
 2
 2
+pPSI
+2x4 female connector
+
+
+0
+8
+8
 pPSI
 2x4Connector
 
@@ -170,7 +184,7 @@ pPSI
 pPSI
 220uF Cap (e)
 
-
+865060345007 
 0
 2
 2
