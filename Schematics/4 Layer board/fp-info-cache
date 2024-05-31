@@ -1,4 +1,4 @@
-68664057727988
+72098280180202
 pPSI
 .1uF Cap (c)
 
@@ -27,6 +27,20 @@ pPSI
 0
 2
 2
+pPSI
+1x2 terminal block
+
+
+0
+2
+2
+pPSI
+1x3 terminal block
+OSTVN03A150-1
+Connector
+0
+3
+3
 pPSI
 1x5 female header
 D01-9970542

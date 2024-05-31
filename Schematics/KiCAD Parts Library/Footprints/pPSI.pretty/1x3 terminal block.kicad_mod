@@ -1,0 +1,236 @@
+(footprint "1x3 terminal block"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "OSTVN03A150-1")
+	(tags "Connector")
+	(property "Reference" "J**"
+		(at 1.5 8.5 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "9d3fc959-c17a-4f9a-8f26-55c1e429369a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "OSTVN03A150"
+		(at 2.54 6.5 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "3ec4e023-a2d9-46c2-a4be-6dc69d4445f2")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" "1x3 terminal block"
+		(at 0.5 -6 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b33cb9a1-33f6-45f7-9cb6-6fa8c2d79a12")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0afbe08c-12b8-4459-96c1-c12f43e240b2")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9e76fe97-483d-4e97-ad6a-c98354880f3a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -1.47 -3.25)
+		(end 6.55 -3.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9043f582-ab0c-4b8d-ba17-dd649677df0f")
+	)
+	(fp_line
+		(start -1.47 3.25)
+		(end -1.47 -3.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4c8dd77e-41af-434a-8871-139ff1d1a5a9")
+	)
+	(fp_line
+		(start 6.55 -3.25)
+		(end 6.55 3.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6fc7abdc-c21e-4951-a5cd-bb43d38c8256")
+	)
+	(fp_line
+		(start 6.55 3.25)
+		(end -1.47 3.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f707b56a-1e12-4fad-afc9-710befb0a5aa")
+	)
+	(fp_line
+		(start -2.47 -4.25)
+		(end 7.55 -4.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "668b0bcf-1fb4-4399-8af3-defb9b4ec018")
+	)
+	(fp_line
+		(start -2.47 4.25)
+		(end -2.47 -4.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "e2140e54-5d3a-4ccc-965b-1464015486bf")
+	)
+	(fp_line
+		(start 7.55 -4.25)
+		(end 7.55 4.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "4f194ce5-505e-4a97-bccd-ace8b1ba41b3")
+	)
+	(fp_line
+		(start 7.55 4.25)
+		(end -2.47 4.25)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "192768a8-083d-41bf-a9b5-67071e8e8fc4")
+	)
+	(fp_line
+		(start -1.47 -3.25)
+		(end 6.55 -3.25)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "2e83d1ae-5e92-4ff6-b661-91c828c275fd")
+	)
+	(fp_line
+		(start -1.47 3.25)
+		(end -1.47 -3.25)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "aa6501e1-ea58-4ec7-b165-5d194e34ad6d")
+	)
+	(fp_line
+		(start 6.55 -3.25)
+		(end 6.55 3.25)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "52aa85ed-ba98-4095-be4a-f1565b836810")
+	)
+	(fp_line
+		(start 6.55 3.25)
+		(end -1.47 3.25)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "2791d52c-8f71-40b7-9a67-529e1b890552")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 3.5 10.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "75d261b3-af44-453b-9828-17dfacaf9018")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 1.95 1.95)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e1cba9db-d7b1-4be2-9041-cc2565327881")
+	)
+	(pad "2" thru_hole circle
+		(at 2.54 0)
+		(size 1.95 1.95)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "d24a3eca-8886-4398-b9bc-d61aae406746")
+	)
+	(pad "3" thru_hole circle
+		(at 5.08 0)
+		(size 1.95 1.95)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "fc17a67a-7fcc-4579-95e6-b56a58d23ac7")
+	)
+	(model "OSTVN03A150.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

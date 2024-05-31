@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'OSTVN03A150'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "On Shore Technology Inc.", "OSTVN03A150" (!) = "", "OSTVN03A150", "Other", "OSTVN03A150", "https://www.arrow.com/en/products/ostvn03a150/on-shore-technology?region=nac", "OSTVN03A150", "https://www.arrow.com/en/products/ostvn03a150/on-shore-technology?region=nac", "8.8 mm"
+END_PART
+
+END.

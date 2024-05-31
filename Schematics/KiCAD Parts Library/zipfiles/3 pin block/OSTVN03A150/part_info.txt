@@ -1,0 +1,9 @@
+Manufacturer=On Shore Technology Inc.
+PartNumber=OSTVN03A150
+PartCategory=Connector
+PackageCategory=Other
+PinCount=3
+Version=1.1
+Released=2019-05-20 16:13:45
+Downloaded=2024-05-30 20:16:22
+3D=Y
